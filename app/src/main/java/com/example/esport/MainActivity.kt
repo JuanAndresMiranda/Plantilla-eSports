@@ -96,7 +96,7 @@ fun Jugador(
             verticalAlignment = Alignment.CenterVertically,
 
     ) {
-        Box{
+        Box(modifier = Modifier.padding(5.dp)){
             Image(
                 painter = painterResource(id = imagen),
                 contentDescription = "Foto de $nombre",
