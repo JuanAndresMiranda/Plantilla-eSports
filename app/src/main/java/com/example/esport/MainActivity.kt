@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -77,10 +78,10 @@ fun Jugador(
     nivel: Int,
     @DrawableRes imagen: Int
 ) {
-    Column(
+    Row( //que todo sea una unica row hace que no se ponga la imagen encima del texto
         modifier = Modifier.background(MaterialTheme.colorScheme.background)
             .padding(top = 32.dp, start = 16.dp, end = 16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            verticalAlignment = Alignment.CenterVertically,
     ) {
         Box{
             Image(
@@ -90,10 +91,9 @@ fun Jugador(
                 modifier = Modifier.size(50.dp).clip(CircleShape)
             )
         }
-        Row() {
             Column(){
                 Descripcion(nombre,rol,edad,nivel)
-            } }
+             }
     }
 
 
@@ -101,12 +101,20 @@ fun Jugador(
 
 @Composable
 fun Descripcion(nombre: String, rol: String, edad: Int, nivel: Int){
-    Row(modifier = Modifier.fillMaxWidth()) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),//necesario para centar el texto en el espacio que queda
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center//centra el texto
+    ) {
         Text(nombre.uppercase(),
             modifier = Modifier.padding(vertical = 2.dp),
             style = MaterialTheme.typography.titleMedium)
     }
-    Row (){
+    Row (
+        modifier = Modifier.fillMaxWidth(),//necesario para centar el texto en el espacio que queda
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center//centra el texto
+    ) {
         Text("Mi rol es $rol, tengo $edad y soy nivel $nivel")
     }
 }
